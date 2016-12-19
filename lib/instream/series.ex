@@ -97,6 +97,10 @@ defmodule Instream.Series do
       def from_map(data) do
         Instream.Series.Hydrator.from_map(__MODULE__, data)
       end
+
+      def from_result(data) do
+        Instream.Series.Hydrator.from_result(__MODULE__, data)
+      end
     end
   end
 
@@ -119,6 +123,13 @@ defmodule Instream.Series do
   Keys not defined in the series are silently dropped.
   """
   @callback from_map(map) :: struct
+
+  @doc """
+  Creates a list of series datasets from a query result map.
+
+  Keys not defined in the series are silently dropped.
+  """
+  @callback from_result(map) :: [struct]
 
 
   @doc """
